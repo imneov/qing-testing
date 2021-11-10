@@ -1,0 +1,27 @@
+
+      __             __
+     / /_____  ___  / /
+    / //_/ _ \/ _ \/ /
+   / ,< /  __/  __/ /
+  /_/|_|\___/\___/_/
+									   
+===============================
+Things Keel Platform
+
+Usage:
+  tkeel [command]
+
+Available Commands:
+  completion  Generates shell completion scripts
+  help        Help about any command
+  init        Install Keel platform on dapr.
+  plugin      Manager plugins. Supported platforms: Kubernetes
+  tenant      tenant of Auth plugins. Supported platforms: Kubernetes
+  uninstall   Uninstall tKeel Platform. Supported platforms: Kubernetes
+
+Flags:
+  -h, --help          help for tkeel
+      --log-as-json   Log output in JSON format
+  -v, --version       version for tkeel
+
+Use "tkeel [command] --help" for more information about a command.
