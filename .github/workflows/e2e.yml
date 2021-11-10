@@ -19,11 +19,9 @@ jobs:
         node-version: [17.x]
 
     steps:
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+
+    - name: Check out code
+      uses: actions/checkout@v2
         
     - name: Create kind cluster
       uses: helm/kind-action@v1.2.0
