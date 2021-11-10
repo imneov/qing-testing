@@ -23,12 +23,6 @@ jobs:
       uses: helm/kind-action@v1.2.0
       with:
         config: .github/workflows/kind/kind.yaml
-        
-    - name: debug
-      run: echo $(kubectl cluster-info --context kind-chart-testing)
-
-    - name: debug1  
-      run: echo $(docker ps)
 
     - name: Install package to cluster and Run e2e test
-      run: docker exec kind-control-plane /bin/bash -c "cd /home/tkeel-cli-testing && npm install && npm run test"
+      run: docker exec chart-testing-control-plane /bin/bash -c "cd /home/tkeel-cli-testing && npm install && npm run test"
