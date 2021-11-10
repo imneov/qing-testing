@@ -64,7 +64,7 @@ describe('tkeel cli', function () {
   });
 
 
-  test('tenent', function (done) {
+  test.skip('tenent', function (done) {
 
     coffee.spawn('tkeel', ['tenant', 'list', '-k'])
       .expect('stdout', `❌  unexpected end of JSON input\n`)
