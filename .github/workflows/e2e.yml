@@ -11,12 +11,8 @@ on:
 
 jobs:
   build:
-    name: Test
+    name: E2E Test
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        tkeel-version: [0.1.1]
 
     steps:
 
