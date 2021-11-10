@@ -7,14 +7,6 @@ import path from 'path'
 
 describe('tkeel cli', function () {
 
-  beforeAll(() => {
-
-  });
-
-  afterAll(() => {
-
-  });
-
 
   test('explam', function () {
 
@@ -59,7 +51,7 @@ describe('tkeel cli', function () {
   });
 
 
-  test('plugin_list', function (done) {
+  test.skip('plugin_list', function (done) {
 
     coffee.spawn('tkeel', ['plugin', 'list'])
       .expect('stdout', /NAME     NAMESPACE  HEALTHY  STATUS   PLUGINSTATUS  REPLICAS  VERSION  AGE  CREATED/)

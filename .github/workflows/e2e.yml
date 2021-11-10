@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [17.x]
+        tkeel-version: [0.1.1]
 
     steps:
 
@@ -29,4 +29,4 @@ jobs:
         config: .github/workflows/kind/kind.yaml
         
     - name: Install package to cluster and Run e2e test
-      run: docker exec kind-control-plane /usr/bin/sh -c run.test
+      run: docker exec kind-control-plane /bin/bash -c "cd /home/tkeel-cli-testing && npm install && npm run test"
