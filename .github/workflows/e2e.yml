@@ -27,8 +27,5 @@ jobs:
     - name: init dapr to cluster
       run: docker exec chart-testing-control-plane /bin/bash -c "dapr init -k -n testing"
 
-    # - name: init tkeel to cluster
-    #   run: docker exec chart-testing-control-plane /bin/bash -c "tkeel init -k -n testing --timeout 600"
-
     - name: Install node package to cluster and run e2e test
       run: docker exec chart-testing-control-plane /bin/bash -c "cd /home/tkeel-cli-testing && npm install && npm run test"
