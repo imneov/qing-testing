@@ -4,5 +4,5 @@ nodes:
 - role: control-plane
   image: kindest/node:V1.22.1
   extraMounts: 
-   - hostPath: /home/go/src/tkeel.io/tkeel-cli-testing
+   - hostPath: .
      containerPath: /home/tkeel-cli-testing

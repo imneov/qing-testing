@@ -29,7 +29,7 @@ jobs:
         config: .github/workflows/kind/kind.yaml
         
     - name: Install package to cluster
-      run: npm install
+      run: docker exec kind-control-plane /usr/bin/sh -c run.test
       
     - name: Run e2e test
       run: npm run test
