@@ -24,10 +24,10 @@ jobs:
       with:
         config: .github/workflows/kind/kind.yaml
 
-    - name: Install dapr to cluster
-      run: docker exec chart-testing-control-plane /bin/bash -c "dapr init -k --debug --timeout 600"
+    - name: init dapr to cluster
+      run: docker exec chart-testing-control-plane /bin/bash -c "dapr init -k"
 
-    - name: Install tkeel to cluster
+    - name: init tkeel to cluster
       run: docker exec chart-testing-control-plane /bin/bash -c "tkeel init -k --debug --timeout 600"
 
     - name: Install node package to cluster and run e2e test
