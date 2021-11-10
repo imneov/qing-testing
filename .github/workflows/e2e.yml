@@ -24,5 +24,8 @@ jobs:
       with:
         config: .github/workflows/kind/kind.yaml
 
-    - name: Install package to cluster and Run e2e test
+    - name: Install tkeel to cluster
+      run: docker exec chart-testing-control-plane /bin/bash -c "tkeel init -k"
+
+    - name: Install node package to cluster and run e2e test
       run: docker exec chart-testing-control-plane /bin/bash -c "cd /home/tkeel-cli-testing && npm install && npm run test"
