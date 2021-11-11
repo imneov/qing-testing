@@ -9,7 +9,8 @@
   "dependencies": {
     "coffee": "^5.4.0",
     "jest": "^27.3.1",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "taiko": "^1.2.7"
   },
   "scripts": {
     "test": "jest tests/cases"

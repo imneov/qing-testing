@@ -51,7 +51,7 @@ describe('tkeel cli', function () {
   });
 
 
-  test.skip('plugin_list', function (done) {
+  test('plugin_list', function (done) {
 
     coffee.spawn('tkeel', ['plugin', 'list'])
       .expect('stdout', /NAME     NAMESPACE  HEALTHY  STATUS   PLUGINSTATUS  REPLICAS  VERSION  AGE  CREATED/)
@@ -64,7 +64,7 @@ describe('tkeel cli', function () {
   });
 
 
-  test.skip('tenent', function (done) {
+  test('tenent', function (done) {
 
     coffee.spawn('tkeel', ['tenant', 'list', '-k'])
       .expect('stdout', `❌  unexpected end of JSON input\n`)
