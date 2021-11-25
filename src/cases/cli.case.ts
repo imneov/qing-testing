@@ -5,11 +5,11 @@ export const c1 = Case.init(
   "tkeel是否安装",
   "输入 tkeel 验证是否安装成功",
   "tkeel",
-  "tkeel",
+  "./src/datas/tkeel.txt",
   (arg: string) => {
     // 处理逻辑
     const result = arg;
-    return "test date for  c002";
+    return "this test date for c002";
   }
 );
 
@@ -17,8 +17,8 @@ export const c2 = Case.init(
   c1.store,
   "tkeel是否安装",
   "这是测试用例 c002",
-  "tkeel",
-  "tkeel",
+  "tkeel plugin -h",
+  "./src/datas/plugin_help.txt",
   (arg: string) => {
     // 处理逻辑
 
@@ -34,7 +34,7 @@ export async function cases() {
     "tkeel是否安装",
     "输入 tkeel 验证是否安装成功",
     "tkeel",
-    "tkeel",
+    "./src/datas/tkeel.txt",
     (arg: string) => {
       // 处理逻辑
       const result = arg;
@@ -46,8 +46,8 @@ export async function cases() {
     c1.asyncStore,
     "tkeel是否安装",
     "这是测试用例 c002",
-    "tkeel",
-    "tkeel",
+    "tkeel plugin -h",
+    "./src/datas/plugin_help.txt",
     (arg: string) => {
       // 处理逻辑
 

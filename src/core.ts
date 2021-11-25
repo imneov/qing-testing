@@ -1,7 +1,10 @@
-import path from "path";
-var fs = require("fs");
-var util = require("util");
-var { execSync, exec } = require("child_process");
+import {
+  spawner,
+  asyncSpawner,
+  cmder,
+  asyncCmder,
+  getFileContent,
+} from "./helper";
 
 export class Case {
   public id!: string;
@@ -21,36 +24,6 @@ export class Case {
   public asyncStore: any;
   // 同上，异步方式
 
-  public filePath = "src/datas/";
-  public txtMap = {
-    tkeel: "tkeel 帮助文案",
-    plugin_help: "plugin 帮助文案",
-  };
-
-  getter(fileName: string) {
-    if (fileName in this.txtMap) {
-      const content = fs.readFileSync(
-        path.resolve(`${this.filePath}${fileName}.txt`),
-        "utf-8"
-      );
-      return content;
-    } else {
-      return fileName;
-    }
-  }
-
-  async asyncCmder(args: string) {
-    // 异步执行 cmd
-    const result = await util.promisify(exec)(args);
-    return result;
-  }
-
-  cmder(args: string) {
-    // 同步执行 cmd
-    const result = execSync(args).toString();
-    return result;
-  }
-
   static async asyncInit(
     id: string,
     name: string,
@@ -63,8 +36,8 @@ export class Case {
     c.id = id;
     c.name = name;
     c.describe = describe;
-    c.expectation = c.getter(expectation);
-    c.actuality = await c.asyncCmder(command);
+    c.expectation = getFileContent(expectation);
+    c.actuality = await asyncCmder(command);
     c.asyncStore = callback(c.actuality);
     return c;
   }
@@ -81,8 +54,8 @@ export class Case {
     c.id = id;
     c.name = name;
     c.describe = describe;
-    c.expectation = c.getter(expectation);
-    c.actuality = c.cmder(command);
+    c.expectation = getFileContent(expectation);
+    c.actuality = cmder(command);
     c.store = callback(c.actuality);
     return c;
   }

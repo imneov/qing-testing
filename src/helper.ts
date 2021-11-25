@@ -1,5 +1,7 @@
-var { execSync, exec, spawnSync, spawn } = require("child_process");
+var fs = require("fs");
+import path from "path";
 var util = require("util");
+import { execSync, exec, spawnSync, spawn } from "child_process";
 
 /**
  * 异步执行命令，不支持交互式输入
@@ -16,7 +18,7 @@ export async function asyncCmder(cmd: string): Promise<any> {
  * @param {string}  cmd - 命令
  * @return {string}} 命令的执行结果
  */
-export function cmder(cmd: string) {
+export function cmder(cmd: string): string {
   const result = execSync(cmd).toString();
   return result;
 }
@@ -40,7 +42,7 @@ export async function asyncSpawner(
     sp.stdin.end();
   }
 
-  let result;
+  let result: any;
   for await (const chunk of sp.stdout) {
     result = chunk.toString();
   }
@@ -55,7 +57,21 @@ export async function asyncSpawner(
  * @param {object} [options] - 可选参数，object 类型
  * @return {string} 命令的执行结果
  */
-export function spawner(cmd: string, arg: Array<any>, options?: object) {
+export function spawner(
+  cmd: string,
+  arg: Array<any>,
+  options?: object
+): string {
   const result = spawnSync(cmd, arg, options).stdout.toString();
   return result;
+}
+
+/**
+ * 获取 txt 文件内容
+ * @param {string} filePath - 文件路径
+ * @return {string} 文件内容
+ */
+export function getFileContent(filePath: string): string {
+  const content = fs.readFileSync(path.resolve(filePath), "utf-8");
+  return content;
 }

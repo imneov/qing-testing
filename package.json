@@ -11,7 +11,7 @@
     "tslib": "^2.3.1"
   },
   "scripts": {
-    "test": "jest tests/e2e  --coverage"
+    "test": "jest src  --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
