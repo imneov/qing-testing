@@ -1,29 +1,29 @@
 import { Case } from "../core";
 
 export const c1 = Case.init(
-  "c001",
-  "tkeel是否安装",
-  "输入 tkeel 验证是否安装成功",
+  "001",
+  "node 是否安装",
+  "输入 node -h 验证是否安装成功",
   "tkeel",
   "./src/datas/tkeel.txt",
   (arg: string) => {
     // 处理逻辑
     const result = arg;
-    return "this test date for c002";
+    return "test date for c002";
   }
 );
 
 export const c2 = Case.init(
-  c1.store,
-  "tkeel是否安装",
-  "这是测试用例 c002",
-  "tkeel plugin -h",
+  "002",
+  "node 版本",
+  "输入 node -v 验证版本号",
+  "node -v",
   "./src/datas/plugin_help.txt",
   (arg: string) => {
     // 处理逻辑
-
-    const result = arg;
-    return "this is a test date for c003";
+    // const result = arg;
+    console.log(c1.store)
+    return "test date for c003";
   }
 );
 

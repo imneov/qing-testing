@@ -1,135 +1,54 @@
-# E2E test
+# E2E 测试
 
-Tkeel CLI E2E test.
+qing-testing 测试框架，支持：
 
-[中文文档](https://github.com/lunz1207/cli/blob/test/tests/e2e/README_zh.md)
+- CLI 自动化测试
+- 接口自动化测试
+- UI 自动化测试
 
-## Test environment
+## 测试设计
 
-Use kind to create a k8s cluster environment running in a docker container.
+我们设计了如下测试用例类 ，主要包含三个部分：
 
-### Install
+- 测试用例属性
+- 测试执行方法
+- 执行结果存储
 
-linux
-
-```bash
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
-chmod +x ./kind
-mv ./kind  /usr/local/bin/kind
-```
-
-macOS
-
-```bash
-brew Install kind
-```
-
-### Creat default cluster
-
-```bash
-kind creat cluster
-```
-
-### Build image
-
-The node image used by kind to create the cluster by default contains only k8s-related components. The E2E test project need dapr, nodejs and other components, you need to package a custom node image.
-
-Build custom image need [kubernetes](https://github.com/kubernetes/kubernetes) source and [kind](https://github.com/kubernetes-sigs/kind) source.
-
-#### base image
-
-A Docker image for running nested containers, systemd, and Kubernetes components. edite [Dockerfile](https://github.com/kubernetes-sigs/kind/blob/main/images/base/Dockerfile), add other components needed.run `make quick` on `/image/base` to build base image.
-
-#### node image
-
-Build need [building-kubernetes-with-docker](https://github.com/kubernetes/community/blob/master/contributors/devel/development.md#building-kubernetes-with-docker) and base image
-
-> NOTE：
->
-> 1. ensure kubernetes source on `$GOPATH/src`
-> 2. ensure kubernetes source contain gitversion
-> 3. use liunx to build
-
-Build node image
-
-```bash
-kind build node-image --base-iamge diy_base_image:1.0 --image new_node_image:1.1
-```
-
-Create cluster by custom image and config file
-
-```yaml
-# kind.yaml config file
-# a cluster with 1 control-plane node and 1 worker
-kind: Cluster
-apiVersion: kind.x-k8s.io/v1alpha4
-nodes:
-- role: control-plane
-  # custom image
-  image: mx2542/node:1.0@sha256:131c887156ffb257854c1d08ed664e635ca31b1b73146bec27024554fde72670
-  extraMounts:
-  # volumeMounts
-   - hostPath: .
-     containerPath: /cli
- - role: worker
-```
-
-```bash
-kind creat cluster --config kind.yaml
-```
-
-## Test design
-
-We designed the following test case classes, which mainly consist of three parts:
-
-- Test case attributes
-- Test execution method
-- Execution result storage
-
-The process of instantiating the test class is the test execution process。After the instantiation is completed, the execution result will be automatically bound to the instance for other use cases to call. If you need to process the test execution data, you can pass in the processing logic externally in the form of a function during instantiation. Use Case instances to organize test scenarios to optimize test data dependency between test cases.
+Case 类实例化的过程即是测试执行过程。实例化完成后会自动将执行的结果绑定实例，供其他用例调用。如果需要对测试执行数据进行处理，实例化时在外部将处理逻辑以函数的形式传入即可。以 Case 实例组织测试场景，优化测试用例之间的测试数据依赖问题。
 
 ```typescript
 export class Case {
   public id!: string;
+  // 用例 id
   public name!: string;
+  // 用例名称
   public describe!: string;
+  // 用例描述
   public command!: string;
+  // 用例输入: tkeel 命令
   public expectation: any;
+  // 预期结果
   public actuality: any;
+  // 实际结果
   public store: any;
+  // 用例输出,通常是供其他用例调用的测试数据
   public asyncStore: any;
-
-  public filePath = "src/datas/";
-  public txtMap = {
-    tkeel: "tkeel 帮助文案",
-    plugin_help: "plugin 帮助文案",
-  };
-
-  getter(fileName: string) {
-    if (fileName in this.txtMap) {
-      const content = fs.readFileSync(
-        path.resolve(`${this.filePath}${fileName}.txt`),
-        "utf-8"
-      );
-      return content;
-    } else {
-      return fileName;
-    }
-  }
+  // 同上，异步方式
 
   async asyncCmder(args: string) {
-    // run cmd
+    // 异步执行 cmd
     const result = await util.promisify(exec)(args);
     return result;
   }
 
   cmder(args: string) {
-    // run  cmd by async
+    // 同步执行 cmd
     const result = execSync(args).toString();
     return result;
   }
 
   static async asyncInit(
+    // 异步方法，初始化 CASE 实例
     id: string,
     name: string,
     describe: string,
@@ -148,6 +67,7 @@ export class Case {
   }
 
   static init(
+    // 同步方法，初始化 CASE 实例
     id: string,
     name: string,
     describe: string,
@@ -167,20 +87,21 @@ export class Case {
 }
 ```
 
-### Writing case
+## 用例编写
 
-Sync case
+### 同步用例
 
 ```typescript
 import { Case } from "../core";
 
 export const c1 = Case.init(
-  "c001",
-  "tkeel是否安装",
-  "输入 tkeel 验证是否安装成功",
-  "tkeel",
-  "tkeel",
+  "c001", // 用例id
+  "tkeel是否安装", // 用例名称
+  "输入 tkeel 验证是否安装成功", // 用例描述
+  "tkeel", // 用例输入：待执行的命令
+  "tkeel", // 预期结果
   (arg: string) => {
+    // 将执行结果数据进行处理
     const result = arg;
     return "test date for  c002";
   }
@@ -193,16 +114,18 @@ export const c2 = Case.init(
   "tkeel",
   "tkeel",
   (arg: string) => {
+    // 处理逻辑
     const result = arg;
     return "this is a test date for c003";
   }
 );
 ```
 
-async case
+### 异步用例
 
 ```typescript
 export async function cases() {
+  // 实例化 case 并打包
   const c1 = await Case.asyncInit(
     "c001",
     "tkeel是否安装",
@@ -210,6 +133,7 @@ export async function cases() {
     "tkeel",
     "tkeel",
     (arg: string) => {
+      // 处理逻辑
       const result = arg;
       return "c002 from c001 store";
     }
@@ -222,6 +146,8 @@ export async function cases() {
     "tkeel",
     "tkeel",
     (arg: string) => {
+      // 处理逻辑
+
       const result = arg;
       return "this is a test date for c003";
     }
@@ -236,7 +162,7 @@ export async function cases() {
 }
 ```
 
-### Check expectations
+### 校验预期
 
 ```typescript
 import { c1, c2, cases } from "./cli.case";
@@ -249,39 +175,31 @@ describe("tkeel cli", () => {
   });
 
   test("001", () => {
+    // 同步用例
     expect(c1.actuality).toBe(c1.expectation);
     console.log(c2);
   });
 
   test("002", async () => {
+    // 异步用例
     expect(testCases.c1.actuality).toBe(testCases.c1.expectation);
     console.log(testCases.c2);
   });
 });
 ```
 
-## Run test
+## 执行用例
 
-### Local run
-
-Required
+依赖
 
 - node.js
 - npm
 - tkeel CLI
 
 ```javascript
-cd e2e
-// install node package
+cd qing-testing
+// 安装node依赖
 npm install
-// run test
+// 运行测试
 npm run test
-```
-
-### Contains run
-
-Run the script mounted in the container
-
-```bash
-docker exec kind_dokcer_container_name /bin/bash -c ". /cli/.github/scripts/run_e2e.sh"
 ```

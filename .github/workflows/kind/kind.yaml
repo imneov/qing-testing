@@ -1,8 +1,0 @@
-kind: Cluster
-apiVersion: kind.x-k8s.io/v1alpha4
-nodes:
-- role: control-plane
-  image: mx2542/node:1.0@sha256:131c887156ffb257854c1d08ed664e635ca31b1b73146bec27024554fde72670
-  extraMounts: 
-   - hostPath: .
-     containerPath: /home/tkeel-cli-testing
