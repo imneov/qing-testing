@@ -1,6 +1,6 @@
 # E2E 测试
 
-qing-testing 测试框架，支持：
+[![codecov](https://codecov.io/gh/lunz1207/qing-testing/branch/main/graph/badge.svg?token=050YYB8TBD)](https://codecov.io/gh/lunz1207/qing-testing)qing-testing 测试框架，支持：
 
 - CLI 自动化测试
 - 接口自动化测试

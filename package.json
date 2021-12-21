@@ -30,7 +30,7 @@
         "jest-junit",
         {
           "outputDirectory": "report",
-          "outputName": "e2e-test.xml"
+          "outputName": "unit-test.xml"
         }
       ]
     ]
