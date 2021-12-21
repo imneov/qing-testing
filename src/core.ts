@@ -4,7 +4,7 @@ export class Case {
   public id: any;
   public description: any;
   public steps: any;
-  public data: any;
+  public execute: any;
   public expectedResults: any;
   public actualResults: any;
   public helper: any;
@@ -16,7 +16,7 @@ export class Case {
     c.id = testCase.id;
     c.description = testCase.description;
     c.steps = testCase.steps;
-    c.data = testCase.data;
+    c.execute = testCase.execute;
     c.expectedResults = testCase.expectedResults;
     c.actualResults = testCase.actualResults;
     c.helper = testCase.helper;
@@ -30,7 +30,7 @@ export class Case {
     c.id = testCase.id;
     c.description = testCase.description;
     c.steps = testCase.steps;
-    c.data = testCase.data;
+    c.execute = testCase.execute;
     c.expectedResults = testCase.expectedResults;
     c.actualResults = testCase.actualResults;
     c.helper = testCase.helper;

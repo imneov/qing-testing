@@ -23,7 +23,7 @@ export type TestCase = {
   id: string;
   description: string;
   steps: string;
-  data: Command | Http;
+  execute: Command | Http;
   expectedResults: any;
   actualResults: any;
   helper: object | undefined;

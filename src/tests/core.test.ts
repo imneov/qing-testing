@@ -7,7 +7,7 @@ describe("core", () => {
       description: "测试用例001",
       steps: `
       1、初始化一个 Case 对象`,
-      data: {
+      execute: {
         cmd: "123",
       },
       expectedResults: "123",
@@ -32,7 +32,7 @@ describe("core", () => {
       1、初始化一个 Case 对象 c1
       2、初始化一个 Case 对象 c2
       2、c2 调用 c1 的实际结果并进行数据处理`,
-      data: {
+      execute: {
         cmd: "123",
       },
       expectedResults: 246,
@@ -50,7 +50,7 @@ describe("core", () => {
       description: "测试用例001",
       steps: `
       1、初始化一个 Case 对象`,
-      data: {
+      execute: {
         cmd: "123",
       },
       expectedResults: "123",
@@ -75,7 +75,7 @@ describe("core", () => {
       1、初始化一个 Case 对象 c1
       2、初始化一个 Case 对象 c2
       2、c2 调用 c1 的实际结果并进行数据处理`,
-      data: {
+      execute: {
         cmd: "123",
       },
       expectedResults: 246,
