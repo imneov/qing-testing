@@ -1,6 +1,6 @@
 import { asyncSpawner, spawner } from "../helper";
 
-describe("cli", () => {
+describe("helper", () => {
 
   test("同步交互式输入", async () => {
     console.log(spawner("node", ["-v"]));
