@@ -22,7 +22,7 @@ describe("core", () => {
         },
       },
       isAutomation: true,
-      type: "CLI",
+      type: undefined,
     });
 
     const c2 = Case.init({
@@ -39,7 +39,7 @@ describe("core", () => {
       actualResults: c1.helper.get(c1.actualResults),
       helper: undefined,
       isAutomation: true,
-      type: "CLI",
+      type: undefined,
     });
     expect(c2.expectedResults).toBe(c2.actualResults);
   });
@@ -65,7 +65,7 @@ describe("core", () => {
         },
       },
       isAutomation: true,
-      type: "CLI",
+      type: undefined,
     });
 
     const c2 = await Case.asyncInit({
@@ -82,7 +82,7 @@ describe("core", () => {
       actualResults: c1.helper.get(c1.actualResults),
       helper: undefined,
       isAutomation: true,
-      type: "CLI",
+      type: undefined,
     });
     expect(c2.expectedResults).toBe(c2.actualResults);
   });
