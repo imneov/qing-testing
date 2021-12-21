@@ -28,5 +28,5 @@ export type TestCase = {
   actualResults: any;
   helper: object | undefined;
   isAutomation: true | false;
-  type: "ui" | "api" | "cli";
+  type: "API" | "CLI" | "UI";
 };
