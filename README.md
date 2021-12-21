@@ -1,4 +1,4 @@
-# E2E 测试
+# Qing-test
 
 [![codecov](https://codecov.io/gh/lunz1207/qing-testing/branch/main/graph/badge.svg?token=050YYB8TBD)](https://codecov.io/gh/lunz1207/qing-testing)
 

@@ -1,9 +1,9 @@
 {
-  "name": "testing",
+  "name": "qing-testing",
   "version": "1.0.0",
-  "description": "tkeel cli E2E tesing",
+  "description": "qing-testing",
   "main": "index.js",
-  "repository": "git@github.com:tkeel.io/cli.git",
+  "repository": "git@github.com:lunz1207/qing-testing.git",
   "author": "lunz1207 <loop2542@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -30,7 +30,7 @@
         "jest-junit",
         {
           "outputDirectory": "report",
-          "outputName": "unit-test.xml"
+          "outputName": "test-report.xml"
         }
       ]
     ]
