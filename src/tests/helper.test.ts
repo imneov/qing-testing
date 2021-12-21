@@ -1,21 +1,6 @@
-import { c1, c2, cases } from "./cli.case";
 import { asyncSpawner, spawner } from "../helper";
 
 describe("cli", () => {
-  var testCases: any;
-
-  beforeAll(async () => {
-    testCases = await cases();
-  });
-
-  test("001", async () => {
-    expect(c1.actuality).toBe(c1.expectation);
-    console.log(c2);
-  });
-
-  test("002", async () => {
-    console.log(testCases.c2);
-  });
 
   test("同步交互式输入", async () => {
     console.log(spawner("node", ["-v"]));
