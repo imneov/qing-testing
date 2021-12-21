@@ -35,13 +35,13 @@ describe("core", () => {
       data: {
         cmd: "123",
       },
-      expectedResults: "123",
+      expectedResults: 246,
       actualResults: c1.helper.get(c1.actualResults),
       helper: undefined,
       isAutomation: true,
       type: "CLI",
     });
-    expect(c2.actualResults).toBe(246);
+    expect(c2.expectedResults).toBe(c2.actualResults);
   });
 
   test("asyncInit", async () => {
@@ -78,12 +78,12 @@ describe("core", () => {
       data: {
         cmd: "123",
       },
-      expectedResults: "123",
+      expectedResults: 246,
       actualResults: c1.helper.get(c1.actualResults),
       helper: undefined,
       isAutomation: true,
       type: "CLI",
     });
-    expect(c2.actualResults).toBe(246);
+    expect(c2.expectedResults).toBe(c2.actualResults);
   });
 });
