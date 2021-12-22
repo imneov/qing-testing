@@ -2,7 +2,7 @@ var fs = require("fs");
 import path from "path";
 var util = require("util");
 import { execSync, exec, spawnSync, spawn } from "child_process";
-import { Command } from "./helper.d";
+import { Command, Http } from "./helper.d";
 
 /**
  * 异步执行命令，不支持交互式输入
@@ -71,4 +71,18 @@ export function spawner(command: Command): string {
 export function getFileContent(filePath: string): string {
   const content = fs.readFileSync(path.resolve(filePath), "utf-8");
   return content;
+}
+
+/**
+ * 处理 http 请求 
+ */
+export function http(http:Http){
+
+
+  
+
+
+
+
+
 }

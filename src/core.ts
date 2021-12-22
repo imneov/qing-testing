@@ -23,12 +23,8 @@ export class Case {
     if (c.type == "CLI") {
       c.actualResults = await asyncSpawner(c.execute);
     }
-    if (c.type === undefined) {
-      c.actualResults = c.actualResults;
-    }
-    c.actualResults = testCase.actualResults;
     c.helper = testCase.helper;
-    c.isAutomation = testCase.steps;
+    c.isAutomation = testCase.isAutomation;
     return c;
   }
 
@@ -43,11 +39,8 @@ export class Case {
     if (c.type == "CLI") {
       c.actualResults = spawner(c.execute);
     }
-    if (c.type === undefined) {
-      c.actualResults = testCase.actualResults;
-    }
     c.helper = testCase.helper;
-    c.isAutomation = testCase.steps;
+    c.isAutomation = testCase.isAutomation;
     return c;
   }
 }

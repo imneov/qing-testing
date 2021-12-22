@@ -8,21 +8,22 @@ describe("core", () => {
       steps: `
       1、初始化一个 Case 对象`,
       execute: {
-        cmd: "123",
+        cmd: "cat",
+        args: [],
+        options: { input: "123" },
       },
       expectedResults: "123",
-      actualResults: 123,
       helper: {
         get: (args: any) => {
           /**
            * 数据处理逻辑
            */
-          let result = args + 123;
+          let result = args + "4";
           return result;
         },
       },
       isAutomation: true,
-      type: undefined,
+      type: "CLI",
     });
 
     const c2 = Case.init({
@@ -33,13 +34,14 @@ describe("core", () => {
       2、初始化一个 Case 对象 c2
       2、c2 调用 c1 的实际结果并进行数据处理`,
       execute: {
-        cmd: "123",
+        cmd: "cat",
+        args: [],
+        options: { input: c1.helper.get(c1.actualResults) },
       },
-      expectedResults: 246,
-      actualResults: c1.helper.get(c1.actualResults),
+      expectedResults: "1234",
       helper: undefined,
       isAutomation: true,
-      type: undefined,
+      type: "CLI",
     });
     expect(c2.expectedResults).toBe(c2.actualResults);
   });
@@ -51,21 +53,22 @@ describe("core", () => {
       steps: `
       1、初始化一个 Case 对象`,
       execute: {
-        cmd: "123",
+        cmd: "cat",
+        args: [],
+        options: { input: "123" },
       },
       expectedResults: "123",
-      actualResults: 123,
       helper: {
         get: (args: any) => {
           /**
            * 数据处理逻辑
            */
-          let result = args + 123;
+          let result = args + "4";
           return result;
         },
       },
       isAutomation: true,
-      type: undefined,
+      type: "CLI",
     });
 
     const c2 = await Case.asyncInit({
@@ -76,13 +79,14 @@ describe("core", () => {
       2、初始化一个 Case 对象 c2
       2、c2 调用 c1 的实际结果并进行数据处理`,
       execute: {
-        cmd: "123",
+        cmd: "cat",
+        args: [],
+        options: { input: c1.helper.get(c1.actualResults) },
       },
-      expectedResults: 246,
-      actualResults: c1.helper.get(c1.actualResults),
+      expectedResults: "1234",
       helper: undefined,
       isAutomation: true,
-      type: undefined,
+      type: "CLI",
     });
     expect(c2.expectedResults).toBe(c2.actualResults);
   });

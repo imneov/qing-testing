@@ -7,8 +7,7 @@ export type TestCase = {
   steps: string;
   execute: Command | Http;
   expectedResults: any;
-  actualResults: any;
   helper: object | undefined;
   isAutomation: true | false;
-  type: "API" | "CLI" | "UI" | undefined;
+  type: "API" | "CLI" | "UI";
 };
