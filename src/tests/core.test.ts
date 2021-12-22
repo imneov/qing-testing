@@ -90,4 +90,30 @@ describe("core", () => {
     });
     expect(c2.expectedResults).toBe(c2.actualResults);
   });
+
+  test("async http request", async () => {
+    const c1 = await Case.asyncInit({
+      id: "001",
+      description: "测试用例 001",
+      steps: `
+      1、请求 yande.re`,
+      execute: {
+        baseURL: "https://yande.re/",
+        url: "/post.json",
+        method: "get",
+        params: {
+          limit: 1,
+        },
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "content-type": "application/json; charset=utf-8",
+        },
+      },
+      expectedResults: "1234",
+      helper: undefined,
+      isAutomation: true,
+      type: "API",
+    });
+    expect(c1.actualResults.status).toBe(200);
+  });
 });

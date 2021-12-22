@@ -5,7 +5,7 @@ export type TestCase = {
   id: string;
   description: string;
   steps: string;
-  execute: Command | Http;
+  execute: Command | AxiosRequestConfig;
   expectedResults: any;
   helper: object | undefined;
   isAutomation: true | false;

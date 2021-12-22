@@ -1,5 +1,5 @@
 import { TestCase } from "./core.d";
-import { spawner, asyncSpawner } from "./helper";
+import { spawner, asyncSpawner, httpRequest } from "./helper";
 
 export class Case {
   public id: any;
@@ -22,6 +22,9 @@ export class Case {
     c.expectedResults = testCase.expectedResults;
     if (c.type == "CLI") {
       c.actualResults = await asyncSpawner(c.execute);
+    }
+    if (c.type == "API") {
+      c.actualResults = await httpRequest(c.execute);
     }
     c.helper = testCase.helper;
     c.isAutomation = testCase.isAutomation;
