@@ -2,38 +2,36 @@ import { asyncSpawner, spawner } from "../helper";
 
 describe("helper", () => {
   test("同步交互式输入", async () => {
-    console.log(
-      spawner({
-        cmd: "node",
-        args: ["-v"],
-      })
-    );
-    console.log(
-      spawner({
-        cmd: "cat",
-        args: [],
-        options: {
-          input: "用户输入",
-        },
-      })
-    );
+    const result = spawner({
+      cmd: "node",
+      args: ["-v"],
+    });
+    expect(result).toBe("v17.0.1\n");
+
+    const result_2 = spawner({
+      cmd: "cat",
+      args: [],
+      options: {
+        input: "123",
+      },
+    });
+    expect(result_2).toBe("123");
   });
 
   test("异步交互式输入", async () => {
-    console.log(
-      await asyncSpawner({
-        cmd: "node",
-        args: ["-v"],
-      })
-    );
-    console.log(
-      await asyncSpawner({
-        cmd: "cat",
-        args: [],
-        options: {
-          input: "用户输入",
-        },
-      })
-    );
+    const result = await asyncSpawner({
+      cmd: "node",
+      args: ["-v"],
+    });
+    expect(result).toBe("v17.0.1\n");
+
+    const result_2 = await asyncSpawner({
+      cmd: "cat",
+      args: [],
+      options: {
+        input: "123",
+      },
+    });
+    expect(result_2).toBe("123");
   });
 });
