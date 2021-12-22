@@ -6,7 +6,7 @@ describe("helper", () => {
       cmd: "node",
       args: ["-v"],
     });
-    expect("v17").toContain(result);
+    expect(result).toContain("v17");
 
     const result_2 = spawner({
       cmd: "cat",
@@ -23,7 +23,7 @@ describe("helper", () => {
       cmd: "node",
       args: ["-v"],
     });
-    expect("v17").toContain(result);
+    expect(result).toContain("v17");
 
     const result_2 = await asyncSpawner({
       cmd: "cat",
