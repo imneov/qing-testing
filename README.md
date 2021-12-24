@@ -22,7 +22,7 @@ test("异步交互式输入", async () => {
 });
 ```
 
-Qing-testing supports cli http api test, you only need to write test `data` and pass in the execution method like `qtesting.spawner`, can also customize the execution method
+Qing-testing supports cli http api test, you only need to write test `data` and pass in the execution method like `qtesting.spawner`, of course you can too can also customize the execution method
 
 [![codecov](https://codecov.io/gh/lunz1207/qing-testing/branch/main/graph/badge.svg?token=050YYB8TBD)](https://codecov.io/gh/lunz1207/qing-testing)
 
