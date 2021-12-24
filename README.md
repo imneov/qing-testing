@@ -44,18 +44,37 @@ npm install qing-testing
 test result bind case for other case
 
 ```bash
-    Case {
-      id: undefined,
-      type: undefined,
-      description: undefined,
-      steps: undefined,
-      data: { cmd: 'cat', args: [], options: { input: '123' } },
-      execute: [Function: spawner],
-      expectedResults: 123,
-      actualResults: '123',
-      helper: undefined,
-      isAutomation: undefined
-    }
+const { qtesting } = require('qing-testing')
 
+test("用例数据调用", async () => {
+  const c1 = qtesting.Case.run(
+    {
+      data: {
+        cmd: "cat",
+        args: [],
+        options: {
+          input: "123",
+        },
+      },
+      execute: qtesting.spawner,
+      expectedResults: 123
+    }
+  )
+
+  const c2 = qtesting.Case.run(
+    {
+      data: {
+        cmd: "cat",
+        args: [],
+        options: {
+          input: c1.actualResults,
+        },
+      },
+      execute: qtesting.spawner,
+      expectedResults: 123
+    }
+  )
+  expect(c2.actualResults).toBe("123");
+});
 
 ```
