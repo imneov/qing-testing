@@ -1,4 +1,4 @@
 import { Case } from "./core";
-import { httpRequest } from "./helper";
+import { httpRequest, asyncSpawner, spawner } from "./helper";
 
-export let qtesting = { Case, httpRequest };
+export let qtesting = { Case, httpRequest, asyncSpawner, spawner };
