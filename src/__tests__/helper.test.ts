@@ -20,18 +20,12 @@ describe("helper", () => {
 
   test("异步交互式输入", async () => {
     const result = await asyncSpawner({
-      cmd: "node",
-      args: ["-v"],
-    });
-    expect(result).toContain("v17");
-
-    const result_2 = await asyncSpawner({
       cmd: "cat",
       args: [],
       options: {
         input: "123",
       },
     });
-    expect(result_2).toBe("123");
+    expect(result).toBe("123");
   });
 });
