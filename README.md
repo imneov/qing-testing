@@ -42,7 +42,7 @@ npm install qing-testing
 
 test result bind case for other case
 
-```json
+```bash
     Case {
       id: undefined,
       type: undefined,
