@@ -2,17 +2,22 @@
   "name": "qing-testing",
   "version": "1.0.0",
   "description": "qing-testing",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "repository": "git@github.com:lunz1207/qing-testing.git",
   "author": "lunz1207 <loop2542@gmail.com>",
   "license": "MIT",
+  "files": [
+    "lib/**/*"
+  ],
   "dependencies": {
     "axios": "^0.24.0",
     "jest": "^27.3.1",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
   },
   "scripts": {
-    "test": "jest src  --coverage"
+    "test": "jest src  --coverage",
+    "build": "tsc"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

@@ -8,6 +8,7 @@
     ],
     "allowJs": false,
     "declaration": false,
+    "outDir": "./lib",
     "declarationMap": false,
     "sourceMap": true,
     "rootDir": "./src",
@@ -38,9 +39,11 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*.ts"
+    "src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/__tests__/*",
+    "types"
   ]
 }

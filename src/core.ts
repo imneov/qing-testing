@@ -1,4 +1,4 @@
-import { TestCase } from "./core.d";
+import { TestCase } from "./types/core";
 
 export class Case {
   public id: any;
@@ -11,7 +11,7 @@ export class Case {
   public helper: any;
   public isAutomation: any;
   public type: any;
-  public expect:any
+  public expect: any;
 
   static async asyncRun(testCase: TestCase) {
     const c = new Case();
