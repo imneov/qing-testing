@@ -2,7 +2,7 @@ var fs = require("fs");
 import path from "path";
 var util = require("util");
 import { execSync, exec, spawnSync, spawn } from "child_process";
-import { Command } from "./types/helper";
+import { Command } from "./index.d";
 import axios, { AxiosRequestConfig } from "axios";
 
 /**

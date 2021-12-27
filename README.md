@@ -3,10 +3,10 @@
 Qing-test is a simple, yet elegant, autotest library.
 
 ```typescript
-const { qtesting } = require("qing-testing");
+const { Case, spawner } = require('qing-testing')
 
 test("异步交互式输入", async () => {
-  const case = qtesting.Case.run({
+  const case = Case.run({
     data: {
       cmd: "cat",
       args: [],
@@ -14,7 +14,7 @@ test("异步交互式输入", async () => {
         input: "123",
       },
     },
-    execute: qtesting.spawner,
+    execute: spawner,
     expectedResults: 123,
   });
   console.log(case);
@@ -22,7 +22,7 @@ test("异步交互式输入", async () => {
 });
 ```
 
-Qing-testing supports cli http api test, you only need to write test `data` and pass in the execution method like `qtesting.spawner`, of course you can too can also customize the execution method
+Qing-testing supports cli http api test, you only need to write test `data` and pass in the execution method like `spawner`, of course you can too can also customize the execution method
 
 [![codecov](https://codecov.io/gh/lunz1207/qing-testing/branch/main/graph/badge.svg?token=050YYB8TBD)](https://codecov.io/gh/lunz1207/qing-testing)
 
@@ -44,10 +44,10 @@ npm install qing-testing
 test result bind case for other case
 
 ```bash
-const { qtesting } = require('qing-testing')
+const { Case, spawner } = require('qing-testing')
 
 test("用例数据调用", async () => {
-  const c1 = qtesting.Case.run(
+  const c1 = Case.run(
     {
       data: {
         cmd: "cat",
@@ -56,12 +56,12 @@ test("用例数据调用", async () => {
           input: "123",
         },
       },
-      execute: qtesting.spawner,
+      execute: spawner,
       expectedResults: 123
     }
   )
 
-  const c2 = qtesting.Case.run(
+  const c2 = Case.run(
     {
       data: {
         cmd: "cat",
@@ -70,7 +70,7 @@ test("用例数据调用", async () => {
           input: c1.actualResults,
         },
       },
-      execute: qtesting.spawner,
+      execute: spawner,
       expectedResults: 123
     }
   )

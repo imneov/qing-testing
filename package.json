@@ -1,8 +1,9 @@
 {
   "name": "qing-testing",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "qing-testing",
   "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "repository": "git@github.com:lunz1207/qing-testing.git",
   "author": "lunz1207 <loop2542@gmail.com>",
   "license": "MIT",

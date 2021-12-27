@@ -7,7 +7,7 @@
       "dom"
     ],
     "allowJs": false,
-    "declaration": false,
+    "declaration": true,
     "outDir": "./lib",
     "declarationMap": false,
     "sourceMap": true,
@@ -44,6 +44,6 @@
   "exclude": [
     "node_modules",
     "**/__tests__/*",
-    "types"
+    // "types"
   ]
 }

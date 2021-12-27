@@ -1,4 +1,4 @@
-import { TestCase } from "./types/core";
+import { TestCase } from "./index.d"
 
 export class Case {
   public id: any;
