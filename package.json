@@ -13,11 +13,14 @@
   "dependencies": {
     "axios": "^0.24.0",
     "jest": "^27.3.1",
+    "ts-retry": "^2.3.9",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "uuid": "^8.3.2"
   },
   "scripts": {
-    "test": "jest src  --coverage",
+    "test": "jest src/tkeel",
+    "debug": "jest src/__tests__  --coverage",
     "build": "tsc"
   },
   "devDependencies": {
@@ -25,6 +28,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.16.0",
     "@types/jest": "^27.0.2",
+    "@types/uuid": "^8.3.3",
     "babel-jest": "^27.3.1",
     "jest-junit": "^13.0.0"
   },

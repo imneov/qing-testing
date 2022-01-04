@@ -4,6 +4,7 @@ var util = require("util");
 import { execSync, exec, spawnSync, spawn } from "child_process";
 import { Command } from "./index.d";
 import axios, { AxiosRequestConfig } from "axios";
+import { isTooManyTries, retryAsync } from "ts-retry";
 
 /**
  * 异步执行命令，不支持交互式输入
@@ -79,9 +80,33 @@ export function getFileContent(filePath: string): string {
  */
 export async function httpRequest(config: AxiosRequestConfig) {
   try {
-    const data = await axios.request(config);
-    return data;
-  } catch (error) {
-    console.log(error);
+    const result = await retryAsync(
+      async () => {
+        const data = await axios.request(config);
+        return data;
+      },
+      {
+        delay: 2000,
+        maxTry: 20,
+        until: (lastResult) => lastResult.status == 200,
+      }
+    );
+    return result;
+  } catch (err: any) {
+    if (isTooManyTries(err)) {
+      console.log("out of maxTry");
+    } else {
+      // console.log(err.message);
+      console.log(err.response.data);
+    }
   }
+}
+
+/**
+ * 设置超时
+ * @param ms 超时时间,毫秒
+ * @returns
+ */
+export function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
